@@ -158,3 +158,69 @@ After creating the quota above, query the used values and pretty-print the outpu
   ```
 
 </details>
+
+
+## Exercise 9
+
+### Problem
+Create a stress pod with memory request and limits applied to a container in the 'gin' namespace.
+Here are the limit/requests definition:
+
+- The container should have a memory request of 100 MiB
+- The container should have a memory limit of 200 MiB
+
+In addition, it should run the 'stress' command in the following arguments:
+
+- --vm = 1
+- --vm-bytes = 150M
+- --vm-hang = 1
+
+Use the "polinux/stress" image in the container.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k run memory-limits -n gin --image=polinux/stress --dry-run=client -o yaml --command -- stress > memory-limits.yaml
+
+    # Edit the memory-limits.yaml and add the args, resource requests and limits. It should look like this:
+
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  labels:
+		run: memory-demo
+	  name: memory-demo
+	spec:
+	  containers:
+	  - name: memory-demo
+		image: polinux/stress
+		resources:
+		  requests: 
+			memory: "100Mi"
+		  limits:
+			memory: "200Mi"
+		command: ["stress"]
+		args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]
+	status: {}
+
+	# Save the file and run the next command
+    k apply -f memory-limits.yaml
+  ```
+
+</details>
+
+## Exercise 10
+
+### Problem
+
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+  ```
+
+</details>
