@@ -66,3 +66,81 @@ Save the resulting manifest as YAML.
 
 </details>
 
+
+## Exercise 4
+
+### Problem
+Create a busybox pod using a YAML manifest that runs "env" as a command. 
+Check the logs created and use the default namespace.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k run busybox --image=busybox --restart=Never --dry-run=client -o yaml --command -- env > busybox.yaml
+    cat busybox.yaml
+    k apply -f busybox.yaml
+    k logs pod busybox 
+  ```
+
+</details>
+
+
+## Exercise 5
+
+### Problem
+Generate a YAML definition for a namespace named 'nogin' without creating a new namespace.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k create ns nogin --dry-run=client -o yaml 
+  ```
+
+</details>
+
+
+## Exercise 6
+
+### Problem
+Create a Pod Resource Quota for the gin namespace, with a hard limit of 2 pods, 1 Gb of memory and 1 cpu.
+The quota should be named "pod-quota" and save as a YAML to apply later.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k create quota pod-quota --hard=pods=2,cpu=1,memory=1Gi --dry-run=client -o yaml > pod-quota.yaml
+    k apply -f pod-quota.yaml
+  ```
+
+</details>
+
+
+## Exercise 7
+
+### Problem
+Set a Resource Quota for the total memory and CPU to be used on all pods running in the 'nogin' namespace.
+The quotas are as follows:
+
+-  requests cpu = 1 
+-  requests memory = 1Gi 
+-  limits cpu = 2
+-  limits memory = 2Gi 
+
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k create quota all-pod-quota -n nogin --hard=requests.cpu=1,requests.memory=1Gi,limits.cpu=2,limits.memory=2Gi --dry-run=client -o yaml > all-pod-quota.yaml
+    k apply -f all-pod-quota.yaml
+
+  ```
+
+</details>
