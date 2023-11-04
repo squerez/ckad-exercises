@@ -127,11 +127,10 @@ The quota should be named "pod-quota" and save as a YAML to apply later.
 Set a Resource Quota for the total memory and CPU to be used on all pods running in the 'nogin' namespace.
 The quotas are as follows:
 
--  requests cpu = 1 
--  requests memory = 1Gi 
--  limits cpu = 2
--  limits memory = 2Gi 
-
+-  The memory request total for all Pods in that namespace must not exceed 1 GiB.
+-  The memory limit total for all Pods in that namespace must not exceed 2 GiB.
+-  The CPU request total for all Pods in that namespace must not exceed 1 cpu.
+-  The CPU limit total for all Pods in that namespace must not exceed 2 cpu.
 
 ### Solution
 <details>
@@ -140,7 +139,22 @@ The quotas are as follows:
   ```
     k create quota all-pod-quota -n nogin --hard=requests.cpu=1,requests.memory=1Gi,limits.cpu=2,limits.memory=2Gi --dry-run=client -o yaml > all-pod-quota.yaml
     k apply -f all-pod-quota.yaml
+  ```
 
+</details>
+
+
+## Exercise 8
+
+### Problem
+After creating the quota above, query the used values and pretty-print the output.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k get quota all-pod-quota -n nogin -o jsonpath='{ .status.used }' | jq .
   ```
 
 </details>
