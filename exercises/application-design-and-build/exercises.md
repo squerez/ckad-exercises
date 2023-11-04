@@ -192,6 +192,7 @@ Use the "polinux/stress" image in the container.
 	  labels:
 		run: memory-demo
 	  name: memory-demo
+      namespace: gin
 	spec:
 	  containers:
 	  - name: memory-demo
@@ -214,6 +215,7 @@ Use the "polinux/stress" image in the container.
 ## Exercise 10
 
 ### Problem
+Create a Pod
 
 
 ### Solution
