@@ -267,7 +267,122 @@ Use a nginx image and save the manifest as YAML.
   k apply -f nginx-guaranteed.yaml
 
   # Get the pod QoS
-  k get pod nginx-guaranteed -o yaml | grep QosClass
+  k get pod nginx-guaranteed -o jsonpath='{ .status.qosClass }{"\n"}'
+  ```
+
+</details>
+
+
+## Exercise 11
+
+### Problem
+Similar to the previous exercise, create a Pod that gets assigned a QoS class of `Burstable`.
+Use a nginx image and save the manifest as YAML.
+
+### Hint
+
+<details>
+  <summary>Spoiler warning</summary>
+
+  For a Pod to be given a QoS class of `Burstable`: 
+  
+  - The pod deos not meet the criteria for QoS class `Guaranteed`.
+  - At least one Container in the Pod has memory or CPU request or limit.
+
+
+</details>
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+  k run nginx-burstable --image=nginx --restart=Never --dry-run=client -o yaml > nginx-burstable.yaml
+
+  # Then edit the file to contain the limits:
+
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  creationTimestamp: null
+	  labels:
+		run: nginx-burstable
+	  name: nginx-burstable
+	spec:
+	  containers:
+	  - image: nginx
+		name: nginx-burstable
+		resources: 
+		  requests:
+			memory: 1Gi
+		  limits:
+			memory: 2Gi
+	  dnsPolicy: ClusterFirst
+	  restartPolicy: Never
+	status: {} 
+
+  # Then create it
+  k apply -f nginx-burstable.yaml
+
+  # Get the pod QoS
+  k get pod nginx-burstable -o jsonpath='{ .status.qosClass }{"\n"}'
+  ```
+
+</details>
+
+
+## Exercise 12
+
+### Problem
+Similar to the previous exercise, create a Pod that gets assigned a QoS class of `BestEffort`.
+Use a nginx image and save the manifest as YAML.
+
+### Hint
+
+<details>
+  <summary>Spoiler warning</summary>
+
+  For a Pod to be given a QoS class of `BestEffort`: 
+
+  - the Containers in the Pod must not have any memory or CPU limits or requests.
+  
+
+</details>
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+  k run nginx-besteffort --image=nginx --restart=Never --dry-run=client -o yaml > nginx-besteffort.yaml
+
+  # Then edit the file to contain the limits:
+
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  creationTimestamp: null
+	  labels:
+		run: nginx-besteffort
+	  name: nginx-besteffort
+	spec:
+	  containers:
+	  - image: nginx
+		name: nginx-besteffort
+		resources: 
+		  requests:
+			memory: 1Gi
+		  limits:
+			memory: 2Gi
+	  dnsPolicy: ClusterFirst
+	  restartPolicy: Never
+	status: {} 
+
+  # Then create it
+  k apply -f nginx-besteffort.yaml
+
+  # Get the pod QoS
+  k get pod nginx-besteffort -o jsonpath='{ .status.qosClass }{"\n"}'
   ```
 
 </details>
