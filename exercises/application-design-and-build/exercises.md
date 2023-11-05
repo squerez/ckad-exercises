@@ -436,3 +436,168 @@ Using the previous pod, pretty-print its running image.
   ```
 
 </details>
+
+## Exercise 16
+
+### Problem
+Using the previous pod, get the pod's ip and use a temp busybox image to wget its root ("/").
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k get po nginx-besteffort -o wide
+
+    # Annotate its IP (ex. 10.0.1.157)
+    
+    # Run busybox
+    k run busybox --image=busybox --rm -it -restart=Never -- wget -O- 10.0.1.157:80
+  ```
+
+</details>
+
+
+## Exercise 17
+
+### Problem
+Get a pod's YAML definition.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k get po nginx-besteffort -o yaml
+  ```
+
+</details>
+
+
+## Exercise 18
+
+### Problem
+Get information about a pod.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k describe po nginx-besteffort 
+  ```
+
+</details>
+
+
+## Exercise 19
+
+### Problem
+Get logs off a pod.
+Follow the logs.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k logs nginx-besteffort -f
+  ```
+
+</details>
+
+## Exercise 20 
+
+### Problem
+Get logs off a previous pod instance.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k logs nginx-besteffort -p
+  ```
+
+</details>
+
+
+## Exercise 21
+
+### Problem
+Execute a simple shell in the 'nginx-besteffort' pod.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k exec -it nginx-besteffort -- sh 
+  ```
+
+</details>
+
+
+## Exercise 22
+
+### Problem
+Create a busybox pod that echoes 'Hello, World!' and exits.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k run busybox --image=busybox -it --restart=Never --command -- echo 'Hello, World!"
+  ```
+
+</details>
+
+
+## Exercise 23
+
+### Problem
+Repeat the previous exercise, but change the pod to be automatically deleted after completion.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k run busybox --image=busybox -it --rm --restart=Never --command -- echo 'Hello, World!"
+  ```
+
+</details>
+
+## Exercise 24
+
+### Problem
+Create a nginx pod with env variables of your choosing being set. 
+Check that the environment variable exists in the pod
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k run nginx-env --image=nginx --env=BEAUTIFUL=WORLD --restart=Never
+    k exec -it nginx-env -- echo $BEAUTIFUL
+  ```
+
+</details>
+
+
+## Exercise 25
+
+### Problem
+Delete the 'nginx-besteffort' pod.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k delete po nginx-besteffort
+  ```
+
+</details>
