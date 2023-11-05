@@ -366,7 +366,7 @@ Use a nginx image and save the manifest as YAML.
 		run: nginx-besteffort
 	  name: nginx-besteffort
 	spec:
-	  containers:
+	  containers:h
 	  - image: nginx
 		name: nginx-besteffort
 		resources: 
@@ -383,6 +383,56 @@ Use a nginx image and save the manifest as YAML.
 
   # Get the pod QoS
   k get pod nginx-besteffort -o jsonpath='{ .status.qosClass }{"\n"}'
+  ```
+
+</details>
+
+
+## Exercise 13
+
+### Problem
+Get pods on all namespaces.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k get po -A
+  ```
+
+</details>
+
+
+## Exercise 14
+
+### Problem
+Change a running pod image of pod 'nginx-besteffort' to nginx:1.7.1.
+Watch the pod getting restarted.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k set image pod/nginx-besteffort nginx-besteffort=nginx:1.7.1
+    k describe po nginx-besteffort
+    k get po nginx-besteffort -w
+  ```
+
+</details>
+
+## Exercise 15
+
+### Problem
+Using the previous pod, pretty-print its running image.
+
+### Solution
+<details>
+  <summary>Spoiler warning</summary>
+
+  ```
+    k get po nginx-besteffort -o jsonpath='{ .spec.containers[].image }{"\n"}'
   ```
 
 </details>
