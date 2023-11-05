@@ -215,14 +215,59 @@ Use the "polinux/stress" image in the container.
 ## Exercise 10
 
 ### Problem
-Create a Pod
+Create a Pod that gets assigned a QoS class of `Guaranteed`.
+Use a nginx image and save the manifest as YAML.
 
+### Hint
+
+<details>
+  <summary>Spoiler warning</summary>
+
+  For a Pod to be given a QoS class of `Guaranteed`: 
+
+  - Every Container in the Pod must have a memory limit and a memory request.
+  - For every Container in the Pod the memory limit must equal the memory request.
+  - Every Container in the Pod must have a CPU limit and a CPU request.
+  - For every Container in the Pod the CPU limit must equal the CPU request.
+
+</details>
 
 ### Solution
 <details>
   <summary>Spoiler warning</summary>
 
   ```
+  k run nginx-guaranteed --image=nginx --restart=Never --dry-run=client -o yaml > nginx-guaranteed.yaml
+
+  # Then edit the file to contain the limits:
+
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  creationTimestamp: null
+	  labels:
+		run: nginx-guaranteed
+	  name: nginx-guaranteed
+	spec:
+	  containers:
+	  - image: nginx
+		name: nginx-guaranteed
+		resources: 
+		  requests:
+			cpu: 1
+			memory: 1Gi
+		  limits:
+			cpu: 1
+			memory: 1Gi
+	  dnsPolicy: ClusterFirst
+	  restartPolicy: Never
+	status: {} 
+
+  # Then create it
+  k apply -f nginx-guaranteed.yaml
+
+  # Get the pod QoS
+  k get pod nginx-guaranteed -o yaml | grep QosClass
   ```
 
 </details>
