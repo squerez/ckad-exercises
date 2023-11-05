@@ -96,3 +96,12 @@ The exam tests for the following domains and competencies:
   - Provide and troubleshoot access to applications via services
   - Use Ingress rules to expose applications
 
+
+### Contributions
+
+I have relied heavily on already created exercises and added a few exercises on my own.
+Please give these amazing repositories a star and suport them:
+
+- https://github.com/ibrahimatay/CKAD-Exercises
+- https://github.com/dgkanatsios/CKAD-exercises/tree/main
+
