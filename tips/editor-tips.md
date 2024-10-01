@@ -12,7 +12,7 @@ There are a few resources out there for this, but I would recommend the followin
 - https://vim-adventures.com/ as an interactive game to learn vim motions
 
 Now, what is important is to set some basic configurations to allow for speed.
-Enter 'vi ~/.vimrc' in the console and type the following:
+Enter `vi ~/.vimrc` in the console and type the following:
 
 ```
 set nu    # Sets line numbers
@@ -128,11 +128,17 @@ Now, you just need to run the following command in order for these aliases to ta
 
 ```echo "source ~/.krc" >> ~/.bashrc && source ~/.bashrc```
 
---------------------
-Additional read material
---------------------
+-----------------------------
+Additional reading material
+-----------------------------
+These aliases were made with my personal workflow in mind - they worked for me because I did not want to memorize a large amount of aliases, and wanted instead to know the k8s commands by heart and then learn its shorthands. 
+
+I created these aliases to gain sometime while typing on the exam and was largely inspired I got largely inspired by the following articles:
 
 - https://freedium.cfd/https://medium.com/the-aws-way/kubernetes-certifications-cka-ckad-prep-tip-3-fast-and-furious-with-kubectl-aliases-a56a3095435a#4ae0
 - https://medium.com/@jenksgibbons/cka-ckad-cks-exam-taking-tips-and-tricks-0c7d749f4021
 - https://kubernetes.io/docs/reference/kubectl/quick-reference/
 - https://github.com/moabukar/CKA-Exercises/blob/main/Useful-Commands%20%26%20Aliases.md
+
+I recommend you give those a look and try to come up with your own mnemonics and aliases - maybe you will have a different approach and include more stuff you find useful!
+
