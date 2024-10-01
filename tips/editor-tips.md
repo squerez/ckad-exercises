@@ -67,14 +67,15 @@ alias khelp=kubectl api-resources
 # `k run pod1 --image=nginx $do`
 # or
 # `k delete pod1 $now  
-# or
-# `k dd`
+
 export do='--dry-run=client -o yaml'
 export dos='--dry-run=server -o yaml'
 export now='--force --grace-period 0'
 
 #
 # Describe
+# To use one of this do it like so:
+# `k dd`
 #
 export da='describe all'
 export dn='describe node'
@@ -84,6 +85,8 @@ export ds='describe service'
 
 #
 # Get
+# To use one of this do it like so:
+# `k gn`
 #
 export gn='get ns -A'
 export gno='get nodes -w'
@@ -92,7 +95,7 @@ export gp='get po -o wide -w'
 export gs='ge svc -w'
 
 #
-# Functiopns
+# Functions
 #
 # Runs a command in a temporary pod
 # to run use: `tmp "some command"`
