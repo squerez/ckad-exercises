@@ -133,7 +133,7 @@ Additional reading material
 -----------------------------
 These aliases were made with my personal workflow in mind - they worked for me because I did not want to memorize a large amount of aliases, and wanted instead to know the k8s commands by heart and then learn its shorthands. 
 
-I created these aliases to gain sometime while typing on the exam and was largely inspired I got largely inspired by the following articles:
+I created these aliases to gain sometime while typing on the exam and was largely inspired by the following articles:
 
 - https://freedium.cfd/https://medium.com/the-aws-way/kubernetes-certifications-cka-ckad-prep-tip-3-fast-and-furious-with-kubectl-aliases-a56a3095435a#4ae0
 - https://medium.com/@jenksgibbons/cka-ckad-cks-exam-taking-tips-and-tricks-0c7d749f4021
