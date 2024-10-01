@@ -6,7 +6,7 @@ using a terminal-based editor such as 'vim' or 'nano' for editing.
 I recommend to become confortable with 'vim' since the labs already come with this editor pre-configured
 and aliased to 'vi'.
 
-There are a few resources out there for this, but I would recommend the following for differente learning approaches:
+There are a few resources out there for this, but I would recommend the following for different learning approaches:
 
 - https://github.com/kodekloudhub/community-faq/blob/main/docs/vi-101.md  as a cheatsheet 
 - https://vim-adventures.com/ as an interactive game to learn vim motions
