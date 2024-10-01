@@ -43,3 +43,66 @@ the configurations using `source ~/.vimrc`.
 
 # Configuring aliases 
 
+Create the following file at `$HOME/.krc`:
+```
+#
+# Kubectl Alias and Environment Variables file.
+# Run 'source $HOME/.krc' if file is modified to take effect in the current shell
+#
+
+# Enable Kubectl autocomplete as recommended by Kubernetes cheatsheet
+# Ref: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+source <(kubectl completion bash) 
+
+#
+# Aliases
+# Get used to use the shorthand versions of the commands
+#
+alias k=kubectl
+alias khelp=kubectl api-resources
+
+#
+# Environment Variables
+# To use them you just need to use the command normally like so:
+# `k run pod1 --image=nginx $do`
+# or
+# `k delete pod1 $now  
+# or
+# `k dd`
+export do='--dry-run=client -o yaml'
+export dos='--dry-run=server -o yaml'
+export now='--force --grace-period 0'
+
+#
+# Describe
+#
+export da='describe all'
+export dn='describe node'
+export dd='describe deploy'
+export dp='describe pod'
+export ds='describe service'
+
+#
+# Get
+#
+export gn='get ns -A'
+export gno='get nodes -w'
+export gd='get deploy -w'
+export gp='get po -o wide -w'
+export gs='ge svc -w'
+
+#
+# Functiopns
+#
+# Runs a command in a temporary pod
+# to run use: `tmp "some command"`
+tmp () {
+    kubectl run tmp -i --rm --restart=Never --image=nginx:alpine -- /bin/sh -c "$1"
+}
+
+# Changes namespace
+# to run use: `sns namespace`
+# k8s - change namespace
+sns () {
+    kubectl config set-context --current --namespace $1
+}
