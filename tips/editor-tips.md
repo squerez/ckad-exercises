@@ -122,3 +122,17 @@ sns () {
 }
 
 # End of $HOME/.krc
+```
+
+Now, you just need to run the following command in order for these aliases to take effect automatically: 
+
+```echo "source ~/.krc" >> ~/.bashrc && source ~/.bashrc```
+
+--------------------
+Additional read material
+--------------------
+
+- https://freedium.cfd/https://medium.com/the-aws-way/kubernetes-certifications-cka-ckad-prep-tip-3-fast-and-furious-with-kubectl-aliases-a56a3095435a#4ae0
+- https://medium.com/@jenksgibbons/cka-ckad-cks-exam-taking-tips-and-tricks-0c7d749f4021
+- https://kubernetes.io/docs/reference/kubectl/quick-reference/
+- https://github.com/moabukar/CKA-Exercises/blob/main/Useful-Commands%20%26%20Aliases.md
